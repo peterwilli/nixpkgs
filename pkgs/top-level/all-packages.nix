@@ -627,6 +627,11 @@ with pkgs;
 
   glyr = callPackage ../tools/audio/glyr { };
 
+  glipper = callPackage ../applications/office/glipper {
+    gconf = gnome2.GConf;
+    vte = gnome2.vte.override { pythonSupport = true; };
+  };
+
   lastpass-cli = callPackage ../tools/security/lastpass-cli { };
 
   pass = callPackage ../tools/security/pass { };
