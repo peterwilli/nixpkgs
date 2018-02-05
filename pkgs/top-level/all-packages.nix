@@ -629,7 +629,6 @@ with pkgs;
 
   glipper = callPackage ../applications/office/glipper {
     gconf = gnome2.GConf;
-    vte = gnome2.vte.override { pythonSupport = true; };
   };
 
   lastpass-cli = callPackage ../tools/security/lastpass-cli { };

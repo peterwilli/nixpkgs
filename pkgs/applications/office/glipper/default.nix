@@ -1,5 +1,5 @@
-{ stdenv, fetchurl, itstool, python2Packages, intltool, wrapGAppsHook
-, libxml2, gobjectIntrospection, gtk2, cairo, file, gconf, vte, gnome2, dbus, glib
+{ stdenv, fetchurl, itstool, python2Packages, intltool
+, libxml2, gobjectIntrospection, gtk2, gconf, gnome2, dbus, glib, keybinder
 }:
 
 
@@ -17,10 +17,10 @@ in buildPythonApplication rec {
   inputs = [ glib ];
   propagatedUserEnvPkgs = [ gconf.out ];
   buildInputs = [
-    intltool wrapGAppsHook file
+    intltool
   ];
   propagatedBuildInputs = with python2Packages;
-  [ pyxdg pygobject2 distutils_extra pygtk gnome2.gnome_python dbus
+  [ pyxdg pygobject2 distutils_extra pygtk gnome2.gnome_python dbus keybinder appindicator
   ];
 
   postInstall = ''
@@ -41,14 +41,14 @@ in buildPythonApplication rec {
   '';
 
   patchPhase = ''
-    patchShebangs .
+    patchShebangs scripts/glipper
   '';
 
   meta = with stdenv.lib; {
-    description = "Visual diff and merge tool";
-    homepage = http://meldmerge.org/;
+    description = "Glipper is a clipboardmanager for GNOME.";
+    homepage = https://launchpad.net/glipper;
     license = stdenv.lib.licenses.gpl2;
     platforms = platforms.linux ++ stdenv.lib.platforms.darwin;
-    maintainers = [ maintainers.mimadrid ];
+    maintainers = [  ];
   };
 }
